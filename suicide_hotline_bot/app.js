@@ -1,4 +1,5 @@
 const Twitter = require('twitter');
+const TextAnalytics = require('./text-analytics');
  
 const client = new Twitter({
   consumer_key: 'mtYELil25BefjifvozfvhrRuH',
@@ -15,11 +16,5 @@ const stream = client.stream('statuses/filter', params);
 stream.on('data', (event) => {
     tweet_array.push(event);
 });
- 
-analyzeTweets = async () => {
-    const tweets = [...tweet_array];
-    tweet_array = [];
-    console.log(tweets.length);
-};
 
-setInterval(() => analyzeTweets(), 60000);
+setInterval(() => TextAnalytics.analyzeTweets(tweet_array), 30000);
