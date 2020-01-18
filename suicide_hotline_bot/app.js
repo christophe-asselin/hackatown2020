@@ -17,4 +17,11 @@ stream.on('data', (event) => {
     tweet_array.push(event);
 });
 
-setInterval(() => TextAnalytics.analyzeTweets(tweet_array), 30000);
+stream.on('error', (event) => {
+    console.error('error');
+});
+
+setInterval(() => {
+    TextAnalytics.analyzeTweets([...tweet_array]);
+    tweet_array = [];
+}, 10000);

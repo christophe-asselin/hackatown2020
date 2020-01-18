@@ -8,11 +8,29 @@ const endpoint = 'https://hackatown2020.cognitiveservices.azure.com/';
 const creds = new CognitiveServicesCredentials.ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': subscription_key } });
 const textAnalyticsClient = new TextAnalyticsAPIClient.TextAnalyticsClient(creds, endpoint);
 
-const analyzeTweets = async (tweet_array) => {
-    const tweets = [...tweet_array];
-    tweet_array = [];
-    textAnalyticsClient.sentiment()
-    console.log(tweets.length);
+const analyzeTweets = (tweets) => {
+
+    if (tweets) {
+        const documents = tweets.map((tweet) => {
+            return {
+                language: tweet.lang,
+                id: tweet.id_str,
+                text: tweet.text
+            };
+        });
+    
+    
+    
+        const input = {documents};
+    
+        textAnalyticsClient.sentiment({multiLanguageBatchInput: input}).then((res) => {
+            console.log(res.documents);
+            console.log(os.EOL);
+        }).catch((e) => {
+            console.error(documents);
+    
+        });
+    }
 };
 
 module.exports.analyzeTweets = analyzeTweets;
