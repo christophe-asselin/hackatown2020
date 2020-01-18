@@ -9,8 +9,13 @@ const client = new Twitter({
 });
 
 let tweet_array = [];
-const MONTREAL_BOUNDING_BOX = '-73.9058,45.4146,-73.4769,45.7029';
-const params = {locations: MONTREAL_BOUNDING_BOX}
+
+const BOUNDING_BOXES = {
+  montreal: '-73.9058,45.4146,-73.4769,45.7029',
+  laval: '-73.884682,45.517218,-73.531288,45.701455',
+  outremont: '-73.617602,45.507785,-73.590831,45.524992'
+}
+const params = {locations: BOUNDING_BOXES.montreal}
 const stream = client.stream('statuses/filter', params);
 
 stream.on('data', (event) => {
