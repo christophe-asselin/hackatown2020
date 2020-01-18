@@ -16,12 +16,14 @@ var client = new Twitter({
 //   }
 // });
 var tweet_array = [];
-var montreal_boundingbox = '-73.9058,45.4146,-73.4769,45.7029';
-// var newyork_obundingbox = '-74,40,-73,41';
-var params = {locations: montreal_boundingbox}
+// var montreal_boundingbox = '-73.977199,45.397273,-73.477371,45.704105';
+var bounding_boxes = {
+    montreal: '-73.977199,45.397273,-73.477371,45.704105',
+    laval: '-73.888762,45.517367,-73.524052,45.701792',
+}
+
+var params = {locations: bounding_boxes.montreal}
 var stream = client.stream('statuses/filter', params);
-
-
 
 stream.on('data', function(event) {
 //   console.log(event.text, event.lang);
