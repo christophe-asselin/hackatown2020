@@ -10,7 +10,7 @@ const textAnalyticsClient = new TextAnalyticsAPIClient.TextAnalyticsClient(creds
 
 const analyzeTweets = (tweets) => {
 
-    if (tweets) {
+    if (tweets.length !== 0) {
         const documents = tweets.map((tweet) => {
             return {
                 language: tweet.lang,
