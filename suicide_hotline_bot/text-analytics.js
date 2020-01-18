@@ -27,7 +27,7 @@ const analyzeTweets = (tweets) => {
             console.log(res.documents);
             console.log(os.EOL);
         }).catch((e) => {
-            console.error(documents);
+            console.error(e.body.error);
     
         });
     }
