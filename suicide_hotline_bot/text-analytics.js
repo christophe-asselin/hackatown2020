@@ -23,11 +23,15 @@ const analyzeTweets = (tweets) => {
     
         const input = {documents};
     
-        textAnalyticsClient.sentiment({multiLanguageBatchInput: input}).then((res) => {
-            console.log(res.documents);
-            console.log(os.EOL);
+        textAnalyticsClient.keyPhrases({multiLanguageBatchInput: input}).then((res) => {
+            res.documents.forEach(result => {
+                const tweet = tweets.find(tweet => tweet.id_str === result.id);
+                console.log(tweet.id, result.keyPhrases, tweet.user.screen_name, tweet.text);
+            });
+            // console.log(res.documents);
+            // console.log(os.EOL);
         }).catch((e) => {
-            console.error(documents);
+            console.error(e);
     
         });
     }
