@@ -19,4 +19,4 @@ const sendReply = (user_screen_name, tweet_id) => {
     });
 }
 
-// sendReply("BotHelpline", "1218776561379397633");
+module.exports.sendReply = sendReply;

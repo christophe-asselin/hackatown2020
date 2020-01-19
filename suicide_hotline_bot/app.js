@@ -16,7 +16,8 @@ const BOUNDING_BOXES = {
   outremont: '-73.617602,45.507785,-73.590831,45.524992',
   sydney: '150.2608,-34.1732,151.3427,-33.3641'
 }
-const params = {locations: BOUNDING_BOXES.montreal}
+// const params = {locations: BOUNDING_BOXES.montreal};
+const params = { follow: '1218586680455848000' };
 const stream = client.stream('statuses/filter', params);
 
 stream.on('data', (event) => {

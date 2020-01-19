@@ -11,7 +11,7 @@ var params = {screen_name: 'BotHelpline'};
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
   if (!error) {
     tweets.forEach(tweet => {
-        console.log(tweet.id_str);
+        console.log(tweet);
     });
   } else {
     console.log(error);

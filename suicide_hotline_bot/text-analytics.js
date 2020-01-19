@@ -2,6 +2,7 @@ const os = require("os");
 const CognitiveServicesCredentials = require("@azure/ms-rest-js");
 const TextAnalyticsAPIClient = require("@azure/cognitiveservices-textanalytics");
 const Database = require('./database');
+const TweetReply = require('./tweet-relply');
 
 const subscription_key = 'b3d09fb511b74372ac32538c3985e01a';
 const endpoint = 'https://hackatown2020.cognitiveservices.azure.com/';
@@ -30,7 +31,8 @@ const analyzeTweets = (tweets) => {
                     Database.addTweet(tweet.user.screen_name, tweet.id_str);
                     Database.getTweetCount(tweet.id_str).then((count) => {
                         if (count > 3) {
-                            // respond to tweet
+                            //TweetReply.sendReply(tweet.user.screen_name, tweet.id_str);
+                            console.log("IT WORKSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
                         }
                     })
                 }
