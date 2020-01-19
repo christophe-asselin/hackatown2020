@@ -17,7 +17,6 @@ const BOUNDING_BOXES = {
   sydney: '150.2608,-34.1732,151.3427,-33.3641'
 }
 const params = {locations: BOUNDING_BOXES.montreal};
-// const params = { follow: '1218586680455848000' };
 const stream = client.stream('statuses/filter', params);
 
 stream.on('data', (event) => {

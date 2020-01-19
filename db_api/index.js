@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const port = 85;
+const cors = require('cors');
+const port = process.env.PORT || 5000;
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
@@ -17,8 +18,9 @@ db.once('open', async () => console.log('\x1b[32m', 'Database connected'));
 
 const userSchema = new Schema({
     id: String,
+    profile_pic: String,
     count: Number,
-    tweets: [String]
+    tweets: [{ id: String, text: String }]
 });
 
 const User = model('User', userSchema);
@@ -26,6 +28,8 @@ const User = model('User', userSchema);
 const getUsers = async () => {
     return User.find();
 };
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     getUsers().then((users) => {
