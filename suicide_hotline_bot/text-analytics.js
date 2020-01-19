@@ -28,7 +28,7 @@ const analyzeTweets = (tweets) => {
             for (document of res.documents) {
                 if (document.score <= 0.1) {
                     const tweet = tweets.find(tweet => tweet.id_str === document.id);
-                    Database.addTweet(tweet.user.screen_name, tweet.id_str, tweet.text);
+                    Database.addTweet(tweet.user.screen_name, tweet.user.profile_image_url_https, tweet.id_str, tweet.text);
                     Database.getTweetCount(tweet.id_str).then((count) => {
                         if (count > 3) {
                             //TweetReply.sendReply(tweet.user.screen_name, tweet.id_str);

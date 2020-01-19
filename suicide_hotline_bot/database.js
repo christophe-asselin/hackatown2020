@@ -13,14 +13,15 @@ db.once('open', async () => console.log('\x1b[32m', 'Database connected'));
 
 const userSchema = new Schema({
     id: String,
+    profile_pic: String,
     count: Number,
-    tweets: [String]
+    tweets: [{ id: String, text: String }]
 });
 
 const User = model('User', userSchema);
 
-const addTweet = (user_id, tweet_id) => {
-    User.findOneAndUpdate({ id: user_id }, { $push: { tweets: tweet_id } }, { upsert: true, useFindAndModify: false }, (error, success) => {
+const addTweet = (user_id, profile_pic, tweet_id, tweet_text) => {
+    User.findOneAndUpdate({ id: user_id }, { profile_pic: profile_pic, $push: { tweets: { id: tweet_id, text: tweet_text } } }, { upsert: true, useFindAndModify: false }, (error, success) => {
         if (error) {
             console.error(error);
         }
