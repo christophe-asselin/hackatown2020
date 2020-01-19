@@ -14,7 +14,7 @@ const BOUNDING_BOXES = {
   montreal: '-73.9058,45.4146,-73.4769,45.7029',
   laval: '-73.884682,45.517218,-73.531288,45.701455',
   outremont: '-73.617602,45.507785,-73.590831,45.524992',
-  newyork: '150.2608,-34.1732,151.3427,-33.3641'
+  sydney: '150.2608,-34.1732,151.3427,-33.3641'
 }
 const params = {locations: BOUNDING_BOXES.montreal}
 const stream = client.stream('statuses/filter', params);

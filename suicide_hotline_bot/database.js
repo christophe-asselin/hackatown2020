@@ -4,12 +4,12 @@ const model = mongoose.model;
 
 const URI = 'mongodb+srv://admin:hackatown2020@cluster0-pjzsr.azure.mongodb.net/test?retryWrites=true&w=majority';
 
-mongoose.connect(URI, {useNewUrlParser: true});
+mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
-db.on('error', () => console.log('Error connecting to database'));
-db.once('open', async () => console.log("Database connected"));
+db.on('error', () => console.log('\x1b[31m', 'Error connecting to database'));
+db.once('open', async () => console.log('\x1b[32m', 'Database connected'));
 
 const userSchema = new Schema({
     id: String,
@@ -20,7 +20,7 @@ const userSchema = new Schema({
 const User = model('User', userSchema);
 
 const addTweet = (user_id, tweet_id) => {
-    User.findOneAndUpdate({ id: user_id }, { $push: { tweets: tweet_id } }, { upsert: true}, (error, success) => {
+    User.findOneAndUpdate({ id: user_id }, { $push: { tweets: tweet_id } }, { upsert: true, useFindAndModify: false }, (error, success) => {
         if (error) {
             console.error(error);
         }
