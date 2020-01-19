@@ -23,9 +23,11 @@ const analyzeTweets = (tweets) => {
         const input = {documents};
     
         textAnalyticsClient.sentiment({multiLanguageBatchInput: input}).then((res) => {
-            for (document in res.documents) {
+            console.log(res.documents);
+            for (document of res.documents) {
                 if (document.score <= 0.1) {
                     const tweet = tweets.find(tweet => tweet.id_str === document.id);
+                    console.log(tweet.text);
                     Database.addTweet(tweet.screen_name, tweet.id_str);
                     Database.getTweetCount(tweet.screen_name).then((count) => {
                         if (count > 3) {

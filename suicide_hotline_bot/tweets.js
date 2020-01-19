@@ -1,17 +1,17 @@
 var Twitter = require('twitter');
  
-var client = new Twitter({
+const client = new Twitter({
   consumer_key: 'mtYELil25BefjifvozfvhrRuH',
   consumer_secret: 'khdQHcnAEq4WCNtxYHOiXLbe273b4UHparM0J0bZIxWDk8VK15',
   access_token_key: '2276885120-C2wwYnZxHfJR6yhZKyyTipCc1xnSWoJ9yji3tU0',
   access_token_secret: '4XMp0Hd4XFm4FBmgAKcURalJqrQ86j86FCIXkF7R6OGbz'
 });
  
-var params = {screen_name: 'ShivaZand'};
+var params = {screen_name: 'BotHelpline'};
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
   if (!error) {
     tweets.forEach(tweet => {
-        console.log(tweet);
+        console.log(tweet.text);
     });
   } else {
     console.log(error);
